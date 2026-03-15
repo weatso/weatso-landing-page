@@ -3,72 +3,64 @@ import HeroSection from "@/components/sections/HeroSection";
 import VenturesGrid from "@/components/sections/VenturesGrid";
 import TechStack from "@/components/sections/TechStack"; 
 import Philosophy from "@/components/sections/Philosophy";
+import Rejection from "@/components/sections/Rejection";
+import Showcase from "@/components/sections/Showcase";
 import React from "react";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function Home() {
   return (
-    <main className="bg-white selection:bg-blue-100 selection:text-blue-900">
+    // PERHATIKAN: bg-[#050505] menggantikan bg-white
+    <main className="bg-[#050505] text-[#EDEDED] selection:bg-blue-500/30 min-h-screen">
       
       <Navbar />
-
-      {/* 1. HERO SECTION */}
       <HeroSection />
-
-      {/* 2. TECH STACK (2 Baris Marquee) */}
       <TechStack />
+      <Philosophy />
+      
+      {/* Reverse Marketing Section */}
+      <Rejection />
 
-      {/* 3. VENTURES (Horizontal Grid) */}
-      <VenturesGrid />
+      <Showcase />
 
-      {/* 4. VISUAL STREAM (Dokumentasi/Snapshot) */}
-      <Philosophy  />
-
-      {/* 5. CTA / FAQ Replacement (Simple & Clean) */}
-      <section id="contact" className="py-16 bg-[#F9F9F7] overflow-hidden border-t border-gray-200">
-        {/* Dekorasi Glow Halus */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-tr from-blue-50/50 to-purple-50/50 rounded-full blur-[100px] -z-10 pointer-events-none" />
+      {/* CTA Section - DIUBAH KE DARK THEME */}
+      <section id="contact" className="py-24 bg-[#0a0a0a] overflow-hidden border-t border-white/5 relative">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-blue-900/20 to-purple-900/20 rounded-full blur-[100px] -z-10 pointer-events-none" />
         
-        <div className="container mx-auto px-6 max-w-4xl relative z-10">
-          <h2 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 tracking-tight">
-            Let&apos;s Build something <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Legendary.</span>
+        <div className="container mx-auto px-6 max-w-4xl relative z-10 text-center">
+          <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight">
+            Ready to Build <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">Your Legacy?</span>
           </h2>
           
-          <p className="text-xl text-gray-500 mb-12 font-light max-w-2xl mx-auto leading-relaxed">
-            Punya pertanyaan tentang layanan Weatso Service, produk Developer, atau kolaborasi kreatif dengan CO-Labz?
+          <p className="text-xl text-gray-400 mb-12 font-light max-w-2xl mx-auto leading-relaxed">
+            Mari diskusikan bagaimana arsitektur kustom kami dapat mengamankan dan meningkatkan skala bisnis Anda tanpa batasan.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a 
               href="mailto:contact@weatso.com" 
-              className="group relative inline-flex h-14 items-center justify-center overflow-hidden rounded-full bg-gray-900 px-8 font-medium text-white transition-all duration-300 hover:bg-gray-800 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20"
+              className="group relative inline-flex h-14 items-center justify-center overflow-hidden rounded-full bg-white px-8 font-bold text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(37,99,235,0.4)]"
             >
-              <span className="mr-2">Mulai Konsultasi</span>
+              <span className="mr-2">Mulai Konsultasi Eksklusif</span>
               <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-            
-            <a 
-              href="#ventures" 
-              className="inline-flex h-14 items-center justify-center rounded-full px-8 font-medium text-gray-600 transition-colors hover:text-gray-900 hover:bg-gray-100"
-            >
-              Lihat Layanan Kami
             </a>
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="py-10 bg-white border-t border-gray-100">
+      {/* FOOTER - DIUBAH KE DARK THEME */}
+      <footer className="py-10 bg-[#050505] border-t border-white/10">
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-1 font-bold text-xl text-gray-900">
+          <div className="flex items-center gap-1 font-bold text-xl text-white tracking-tighter">
             WEATSO<span className="text-blue-600">.</span>
           </div>
-          <p className="text-sm text-gray-400 font-light">
-            &copy; {new Date().getFullYear()} Weatso Digital Holding. Built with Precision in Indonesia.
+          <p className="text-sm text-gray-500 font-light">
+            &copy; {new Date().getFullYear()} Weatso Premium IT Consultant. Architected in Indonesia.
           </p>
         </div>
       </footer>
+      <SpeedInsights />
     </main>
   );
 }

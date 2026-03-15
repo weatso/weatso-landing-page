@@ -14,25 +14,25 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span className="inline-block px-4 py-1.5 mb-6 text-xs font-mono tracking-widest uppercase border border-white/10 rounded-full bg-white/5 backdrop-blur-sm">
-            Bespoke Software Architecture
+          <span className="inline-block px-4 py-1.5 mb-6 text-xs font-mono tracking-widest uppercase border border-white/10 rounded-full bg-white/5 backdrop-blur-sm text-blue-400">
+            Exclusive IT Consultant
           </span>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9] mb-8">
-            WE BUILD <br />
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.1] mb-8">
+            WE DON&apos;T BUILD APPS. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600">
-              ELITE ENGINES.
+              WE ARCHITECT LEGACIES.
             </span>
           </h1>
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-400 font-light leading-relaxed mb-10">
-            WEATSO adalah unit premium untuk solusi teknologi kustom. Kami mengubah ide kompleks menjadi infrastruktur digital yang tak terpatahkan.
+            WEATSO bukan untuk semua orang. Kami mengabaikan tren komoditas murah demi satu tujuan: membangun infrastruktur digital yang memancarkan <strong className="text-white">prestise</strong> dan menjamin <strong className="text-white">keamanan absolut</strong>.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="px-8 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition-transform">
-              Mulai Proyek Kustom
+            <button className="px-8 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+              Minta Undangan Konsultasi
             </button>
-            <button className="px-8 py-4 border border-white/10 rounded-full hover:bg-white/5 transition-colors">
-              Lihat Arsitektur Kami
+            <button className="px-8 py-4 border border-white/10 text-gray-300 rounded-full hover:bg-white/5 transition-colors">
+              Eksplorasi Arsitektur
             </button>
           </div>
         </motion.div>
