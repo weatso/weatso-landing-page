@@ -62,7 +62,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 
 const FeaturesSection: React.FC = () => {
   return (
-    <section className="py-32 px-4 bg-[#F9F9F7]">
+    <section className="py-16 px-4 bg-[#F9F9F7]">
       <div className="max-w-6xl mx-auto">
         
         {/* Section Header */}

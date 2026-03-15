@@ -52,24 +52,23 @@ export default function Navbar() {
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 group-hover:scale-150 inline-block transition-transform duration-300">.</span>
         </Link>
 
-        {/* DESKTOP MENU */}
-        <div className="hidden md:flex gap-8 items-center text-sm font-medium text-gray-700">
+        {/* DESKTOP MENU (Hidden di HP) */}
+        <div className="hidden md:flex gap-8 items-center text-sm font-medium text-gray-600">
           {navLinks.map((link) => (
-             // ... link desktop code
-             <a key={link.name} href={link.href} onClick={(e) => handleScroll(e, link.href)} className="hover:text-blue-600 transition-colors">{link.name}</a>
+            <a key={link.name} href={link.href} onClick={(e) => handleScroll(e, link.href)} className="hover:text-blue-600 transition-colors">
+              {link.name}
+            </a>
           ))}
-          {/* Tombol Contact Desktop */}
-          <a href="mailto:contact@weatso.com" className="px-6 py-2.5 rounded-full bg-gray-900 text-white text-xs font-bold hover:bg-blue-600 transition-all">
+          <a href="#contact" className="px-5 py-2 rounded-full bg-gray-900 text-white text-xs font-bold hover:bg-blue-600 transition-all">
             Contact
           </a>
         </div>
 
-        {/* MOBILE MENU (Sementara: Hanya Tampilkan Tombol Contact Kecil) */}
-        <div className="flex md:hidden">
-            <a href="mailto:contact@weatso.com" className="px-4 py-2 rounded-full bg-gray-900 text-white text-xs font-bold">
-              Contact Us
-            </a>
-            {/* Nanti di sini bisa ditambahkan Hamburger Menu (Sheet) */}
+        {/* MOBILE MENU (Hanya Muncul di HP) */}
+        <div className="flex md:hidden items-center gap-4">
+          <a href="#contact" className="px-4 py-2 rounded-full bg-gray-900 text-white text-[10px] font-bold tracking-wide">
+            CONTACT US
+          </a>
         </div>
       </div>
     </motion.nav>
