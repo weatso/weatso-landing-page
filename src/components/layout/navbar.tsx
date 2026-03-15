@@ -1,76 +1,63 @@
 'use client'
-
 import { useState, useEffect } from "react"
-import { motion, useScroll, useMotionValueEvent } from "framer-motion"
+import { motion } from "framer-motion"
+import Image from "next/image"
 import { cn } from "@/lib/utils"
-import Link from "next/link"
-// Import Lenis instance jika menggunakan context, atau gunakan pendekatan native selector
-// Karena kita pakai Lenis global, kita bisa trigger scroll manual lewat window
 
 export default function Navbar() {
-  const { scrollY } = useScroll()
   const [isScrolled, setIsScrolled] = useState(false)
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 20)
-  })
-
-  // Helper untuk smooth scroll dengan Lenis
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
-    e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) {
-      // @ts-ignore - window.lenis biasanya di-inject jika setup global, 
-      // tapi cara paling aman adalah native scrollIntoView dengan behavior auto (karena Lenis akan intercept)
-      // atau custom event dispatch. 
-      // Cara paling reliable untuk Lenis di Next.js:
-      target.scrollIntoView({ behavior: 'smooth' }); 
-    }
-  }
-
-  const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Tech Stack", href: "#tech" },
-    { name: "Our Ventures", href: "#ventures" },
-    { name: "Showcase", href: "#showcase" },
-  ];
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
-    <motion.nav
-      className={cn(
-        // Kurangi padding di mobile (px-6 -> px-4)
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out px-4 md:px-12",
-        isScrolled 
-          ? "bg-white/80 backdrop-blur-md border-b border-white/40 shadow-sm py-3" // Blur dikurangi ke md biar ringan
-          : "bg-transparent py-4 md:py-6"
-      )}
-    >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* LOGO */}
-        <Link href="/" className="font-bold text-2xl tracking-tighter text-gray-900 group relative z-50">
-          WEATSO
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 group-hover:scale-150 inline-block transition-transform duration-300">.</span>
-        </Link>
+    <nav className="fixed top-0 left-0 right-0 z-[100] flex justify-center p-4 md:p-8 pointer-events-none">
+      <motion.div
+        layout
+        className={cn(
+          "pointer-events-auto flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]",
+          isScrolled 
+            ? "bg-black/40 backdrop-blur-3xl border border-white/10 rounded-full px-4 py-2 w-[95%] md:w-auto min-w-[300px] shadow-2xl" 
+            : "bg-transparent w-full max-w-7xl px-2"
+        )}
+      >
+        {/* Logo - Dibuat Besar dan Menonjol */}
+        <div className="relative flex items-center">
+          <motion.div 
+            layout
+            className={cn(
+              "relative z-10 transition-all duration-500",
+              isScrolled ? "w-12 h-12" : "w-20 h-20 md:w-24 md:h-24"
+            )}
+          >
+            <Image 
+              src="/logo.svg" 
+              alt="WEATSO" 
+              fill 
+              className="object-contain drop-shadow-[0_0_15px_rgba(37,99,235,0.3)]"
+              priority
+            />
+          </motion.div>
+        </div>
 
-        {/* DESKTOP MENU (Hidden di HP) */}
-        <div className="hidden md:flex gap-8 items-center text-sm font-medium text-gray-600">
-          {navLinks.map((link) => (
-            <a key={link.name} href={link.href} onClick={(e) => handleScroll(e, link.href)} className="hover:text-blue-600 transition-colors">
-              {link.name}
+        {/* Navigation Links - Hanya muncul saat lebar */}
+        <div className="hidden md:flex items-center gap-1">
+          {["Services", "Tech", "Work"].map((item) => (
+            <a key={item} href={`#${item.toLowerCase()}`} className="px-6 py-2 text-sm font-medium text-gray-400 hover:text-white transition-all rounded-full hover:bg-white/5">
+              {item}
             </a>
           ))}
-          <a href="#contact" className="px-5 py-2 rounded-full bg-gray-900 text-white text-xs font-bold hover:bg-blue-600 transition-all">
-            Contact
-          </a>
         </div>
 
-        {/* MOBILE MENU (Hanya Muncul di HP) */}
-        <div className="flex md:hidden items-center gap-4">
-          <a href="#contact" className="px-4 py-2 rounded-full bg-gray-900 text-white text-[10px] font-bold tracking-wide">
-            CONTACT US
-          </a>
-        </div>
-      </div>
-    </motion.nav>
+        {/* Premium CTA: Magnetic Feel */}
+        <button className="group relative overflow-hidden px-6 py-2.5 md:px-8 md:py-3 rounded-full bg-white text-black text-xs md:text-sm font-bold tracking-tight transition-all active:scale-95">
+          <span className="relative z-10 transition-colors group-hover:text-white">Secure Your Asset</span>
+          <div className="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+        </button>
+      </motion.div>
+    </nav>
   )
 }

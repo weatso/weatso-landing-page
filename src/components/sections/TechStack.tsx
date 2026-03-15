@@ -36,7 +36,7 @@ const row2 = [
 
 const TechStack = () => {
   return (
-    <section id="tech" className="py-20 bg-white border-y border-gray-100 overflow-hidden flex flex-col gap-10">
+    <section id="tech" className="py-20 bg-transparent border-y border-white/5 overflow-hidden flex flex-col gap-10">
       <div className="container mx-auto px-6 text-center">
         <p className="text-xs font-bold tracking-[0.2em] text-gray-400 uppercase mb-4">
           Tech Arsenal

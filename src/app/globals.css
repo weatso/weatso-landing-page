@@ -2,122 +2,36 @@
 
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    /* Putih Mutlak */
-    --foreground: 222.2 84% 4.9%;
-    /* Hampir Hitam */
+    /* WEATSO PREMIUM DARK PALETTE */
+    --background: #050505; /* Black Abyss */
+    --foreground: #EDEDED;
+    --accent-blue: #2563EB; /* Dari Logo Anda */
+    --accent-purple: #9333EA; /* Secondary Accent */
   }
 
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-  }
-
-  html.lenis,
-  html.lenis body {
-    height: auto;
-  }
-
-  .lenis.lenis-smooth {
-    scroll-behavior: auto !important;
-    /* Matikan native smooth scroll agar Lenis bekerja */
-  }
-
-  .lenis.lenis-smooth [data-lenis-prevent] {
-    overscroll-behavior: contain;
-  }
-
-  .lenis.lenis-stopped {
-    overflow: hidden;
-  }
-
-  .lenis.lenis-scrolling iframe {
-    pointer-events: none;
+    background-color: var(--background);
+    color: var(--foreground);
+    @apply antialiased selection:bg-blue-500/30;
   }
 }
 
 @layer utilities {
-
-  /* Gradasi Khas Weatso: Biru ke Ungu */
-  .bg-gradient-weatso {
-    @apply bg-gradient-to-r from-blue-600 to-purple-600;
+  .bg-mesh-gradient {
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(147, 51, 234, 0.15) 0px, transparent 50%);
+  }
+  
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
   }
 
-  .text-gradient-weatso {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600;
-  }
-
-  /* Utility untuk 3D Perspective Container */
-  .perspective-1000 {
-    perspective: 1000px;
-  }
-
-  .perspective-container {
-    transform-style: preserve-3d;
-  }
-
-  /* Animasi Orbit */
-  .orbit-container {
-    animation: orbit-rotate 40s linear infinite;
-  }
-
-  .orbit-item {
-    animation: orbit-counter-rotate 40s linear infinite;
-  }
-
-  @keyframes orbit-rotate {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes orbit-counter-rotate {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(-360deg);
-    }
-
-    /* Menjaga icon tetap tegak */
-  }
-
-  /* Border halus dengan gradasi saat hover */
-  .border-gradient-hover {
-    position: relative;
-    background: white;
-    z-index: 1;
-  }
-
-  .border-gradient-hover::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 2px;
-    /* Ketebalan border */
-    background: linear-gradient(to right, #2563EB, #9333EA);
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-  }
-
-  .border-gradient-hover:hover::before {
-    opacity: 1;
+  .text-glow {
+    text-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
   }
 }

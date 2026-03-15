@@ -2,7 +2,7 @@ import Navbar from "@/components/layout/navbar";
 import HeroSection from "@/components/sections/HeroSection"; 
 import VenturesGrid from "@/components/sections/VenturesGrid";
 import TechStack from "@/components/sections/TechStack"; 
-import VisualStream from "@/components/sections/VisualStream";
+import Philosophy from "@/components/sections/Philosophy";
 import React from "react";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
@@ -22,7 +22,7 @@ export default function Home() {
       <VenturesGrid />
 
       {/* 4. VISUAL STREAM (Dokumentasi/Snapshot) */}
-      <VisualStream />
+      <Philosophy  />
 
       {/* 5. CTA / FAQ Replacement (Simple & Clean) */}
       <section id="contact" className="py-16 bg-[#F9F9F7] overflow-hidden border-t border-gray-200">
