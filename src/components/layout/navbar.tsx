@@ -20,7 +20,8 @@ export default function Navbar() {
         className={cn(
           "pointer-events-auto flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] overflow-hidden h-16 md:h-20 px-4 md:px-6 rounded-full",
           isScrolled 
-            ? "bg-black/60 backdrop-blur-3xl border border-white/10 w-full md:w-[800px] shadow-[0_20px_40px_-10px_rgba(37,99,235,0.2)]" 
+            // PERHATIKAN PENAMBAHAN SHADOW GLOW DI BAWAH INI
+            ? "bg-black/60 backdrop-blur-3xl border border-blue-500/20 w-full md:w-[800px] shadow-[0_15px_40px_-10px_rgba(147,51,234,0.25)]" 
             : "bg-transparent border-transparent w-full max-w-7xl"
         )}
       >
@@ -46,10 +47,10 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Premium CTA - Ukuran Dikunci */}
-        <button className="group relative overflow-hidden px-6 py-2.5 md:px-8 md:py-3 rounded-full bg-white text-black text-xs md:text-sm font-bold tracking-tight transition-all active:scale-95 shrink-0">
-          <span className="relative z-10 transition-colors group-hover:text-white">Secure Your Asset</span>
-          <div className="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+        {/* Premium CTA - Diseragamkan */}
+        <button className="group relative overflow-hidden px-6 py-2.5 md:px-8 md:py-3 rounded-full bg-white text-black text-xs md:text-sm font-bold uppercase tracking-wider transition-all active:scale-95 shrink-0">
+          <span className="relative z-10 transition-colors group-hover:text-white">Inisiasi Konsultasi</span>
+          <div className="absolute inset-0 bg-[#111] translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
         </button>
       </motion.div>
     </nav>

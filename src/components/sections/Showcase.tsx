@@ -1,54 +1,89 @@
 'use client'
-import { motion } from "framer-motion"
+import { useRef } from "react"
+import { motion, useScroll, useTransform } from "framer-motion"
+
+const portfolios = [
+  {
+    id: "01",
+    client: "Evory",
+    title: "Premium Wedding Platform",
+    desc: "Arsitektur penyimpanan aset kustom dengan manajemen file terdistribusi. Platform yang dirancang untuk menahan lonjakan traffic ekstrim dan memberikan pengalaman UI/UX yang imersif.",
+    link: "https://evory.id"
+  },
+  {
+    id: "02",
+    client: "CO-LABZ",
+    title: "Creative Digital Studio",
+    desc: "Infrastruktur web interaktif dengan performa animasi 60fps. Memadukan estetika visual tinggi dengan fondasi kode yang ringan dan teroptimasi penuh.",
+    link: "https://colabz.id"
+  },
+  {
+    id: "03",
+    client: "Radeva",
+    title: "Wedding & Event Organizer",
+    desc: "Sistem pendaratan terintegrasi yang memisahkan ekosistem Radeva dan WTP Event Organizer dalam satu arsitektur terpusat, mengoptimalkan konversi klien premium.",
+    link: "#"
+  }
+]
 
 export default function Showcase() {
+  const targetRef = useRef<HTMLDivElement>(null)
+  
+  const { scrollYProgress } = useScroll({ target: targetRef })
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-66.66%"])
+
   return (
-    <section id="work" className="py-24 px-6 bg-[#050505] relative overflow-hidden border-y border-white/5">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-16 md:mb-24">
-          <h2 className="text-sm font-mono text-blue-500 mb-4 tracking-widest uppercase">Proof of Execution</h2>
+    <section ref={targetRef} id="work" className="relative h-[300vh] bg-[#030303]">
+      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden border-t border-white/5">
+        
+        <div className="absolute top-24 left-6 md:left-12 lg:left-24 z-10">
+          <h2 className="text-sm font-mono text-gray-500 mb-4 tracking-widest uppercase">Portfolio</h2>
           <h3 className="text-4xl md:text-6xl font-bold tracking-tighter text-white">
-            ENGINEERED FOR <br /> ABSOLUTE SCALE.
+            SELECTED WORKS.
           </h3>
         </div>
 
-        {/* Showcase Item 1 - Format Deep Dive */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          {/* Visual Placeholder (Ganti dengan Screenshot Mockup/Arsitektur Asli) */}
-          <div className="md:col-span-7 h-[400px] md:h-[600px] bg-white/5 rounded-3xl border border-white/10 relative overflow-hidden group">
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            <div className="absolute inset-0 flex items-center justify-center text-gray-600 font-mono text-sm">
-              [ Masukkan Mockup UI/UX atau Diagram Arsitektur Server di Sini ]
+        <motion.div style={{ x }} className="flex w-[300vw] items-center pt-24 md:pt-0">
+          {portfolios.map((item) => (
+            <div key={item.id} className="w-[100vw] flex items-center justify-center px-6 md:px-24">
+              
+              <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center">
+                
+                {/* Visual Placeholder - Premium Glow Hover */}
+                <div className="md:col-span-7 h-[350px] md:h-[550px] rounded-xl bg-[#0a0a0a] border border-white/5 relative overflow-hidden group flex items-center justify-center transition-all duration-700 hover:border-purple-500/30 hover:shadow-[0_0_50px_rgba(147,51,234,0.15)]">
+                  {/* Inner Glow Mesh */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl" />
+                  
+                  <span className="relative z-10 font-mono text-gray-700 tracking-widest uppercase text-sm group-hover:text-blue-300 transition-colors duration-500 drop-shadow-[0_0_8px_rgba(37,99,235,0.5)]">
+                    [ Visual Architecture: {item.client} ]
+                  </span>
+                </div>
+
+                {/* Minimalist Text Context */}
+                <div className="md:col-span-5 flex flex-col justify-center">
+                  <span className="text-gray-500 font-mono text-sm block mb-6">{item.id} — {item.client}</span>
+                  <h4 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-none">{item.title}</h4>
+                  <p className="text-gray-400 leading-relaxed mb-10 text-lg md:text-xl font-light">
+                    {item.desc}
+                  </p>
+                  
+                  <div>
+                    <a 
+                      href={item.link} 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center pb-2 border-b border-gray-600 text-white font-bold uppercase tracking-wider text-sm hover:border-white transition-colors group"
+                    >
+                      Eksplorasi {item.client} 
+                      <span className="ml-2 group-hover:translate-x-2 transition-transform">→</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
             </div>
-          </div>
-
-          {/* Konteks Teknis */}
-          <div className="md:col-span-5 md:pl-10">
-            <h4 className="text-3xl font-bold text-white mb-4">Enterprise POS & ERP Ecosystem</h4>
-            <p className="text-gray-400 leading-relaxed mb-6">
-              Sistem manajemen operasional kustom yang dirancang untuk menangani ribuan transaksi *real-time* tanpa latensi. Menghilangkan ketergantungan pada *software* pihak ketiga yang kaku.
-            </p>
-            
-            <ul className="space-y-4 mb-8">
-              <li className="flex items-center text-sm text-gray-300">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
-                Microservices Architecture
-              </li>
-              <li className="flex items-center text-sm text-gray-300">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
-                Real-time Data Sync (WebSockets)
-              </li>
-              <li className="flex items-center text-sm text-gray-300">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></span>
-                Bank-Grade Security Encryption
-              </li>
-            </ul>
-
-            <button className="text-white border-b border-blue-500 pb-1 text-sm font-bold uppercase tracking-wider hover:text-blue-400 transition-colors">
-              Pelajari Arsitektur Ini →
-            </button>
-          </div>
-        </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   )
